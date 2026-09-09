@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - Expense Tracker</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/css/auth.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/css/landing.css"
+          asp-append-version="true" />
+</head>
+
+<body>
+
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
+            <div class="container">
+
+                <!-- Application Logo -->
+                <a class="navbar-brand fw-bold"
+                   asp-controller="Home"
+                   asp-action="Dashboard">
+                    Expense Tracker
+                </a>
+
+
+                <!-- Mobile Menu Button -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+
+                <!-- Navigation -->
+                <div class="collapse navbar-collapse"
+                     id="mainNavbar">
+
+                    <ul class="navbar-nav me-auto">
+
+                        <!-- Dashboard -->
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Dashboard">
+
+                                Dashboard
+
+                            </a>
+
+                        </li>
+
+
+                        <!-- Expenses -->
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               asp-controller="Expense"
+                               asp-action="Index">
+
+                                Expenses
+
+                            </a>
+
+                        </li>
+
+
+                        <!-- Add Expense -->
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               asp-controller="Expense"
+                               asp-action="Create">
+
+                                Add Expense
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+
+                    <!-- Login / Logout -->
+                    <partial name="_LoginPartial" />
+
+                </div>
+
+            </div>
+
+        </nav>
+    }
+
+
+    <!-- Main Content -->
+
+    <main class="container py-4">
+
+        @RenderBody()
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="border-top footer text-muted">
+
+        <div class="container py-3">
+
+            &copy; @DateTime.Now.Year - Expense Tracker
+
+        </div>
+
+    </footer>
+
+
+    <!-- Scripts -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true">
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>

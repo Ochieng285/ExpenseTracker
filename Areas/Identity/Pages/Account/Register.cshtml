@@ -1,0 +1,143 @@
+﻿@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Create Account";
+}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+
+            <div class="auth-logo">
+                <span>ET</span>
+            </div>
+
+            <h1>Create Account</h1>
+
+            <p>Start managing your expenses today</p>
+
+        </div>
+
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+            <div class="form-group">
+
+                <label asp-for="Input.Email">
+                    Email address
+                </label>
+
+                <input asp-for="Input.Email" class="form-control auth-input" autocomplete="username"
+                    placeholder="Enter your email" />
+
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Input.Password">
+                    Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input asp-for="Input.Password" class="form-control auth-input password-input"
+                        autocomplete="new-password" placeholder="Create a password" id="registerPassword" />
+
+                    <button type="button" class="password-toggle" onclick="togglePassword('registerPassword', this)"
+                        aria-label="Show password">
+
+                        <i class="bi bi-eye"></i>
+
+                    </button>
+
+                </div>
+
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Input.ConfirmPassword">
+                    Confirm password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input asp-for="Input.ConfirmPassword" class="form-control auth-input password-input"
+                        autocomplete="new-password" placeholder="Confirm your password" id="confirmPassword" />
+
+                    <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword', this)"
+                        aria-label="Show password">
+
+                        <i class="bi bi-eye"></i>
+
+                    </button>
+
+                </div>
+
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+
+            </div>
+
+            <button id="registerSubmit" type="submit" class="btn auth-btn">
+                Create Account
+            </button>
+
+        </form>
+
+        <div class="auth-divider">
+            <span>OR</span>
+        </div>
+
+        <div class="auth-register">
+
+            <p>Already have an account?</p>
+
+            <a asp-page="./Login" class="register-link">
+                Sign in
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function togglePassword(inputId, button) {
+
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector("i");
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+
+                button.setAttribute("aria-label", "Hide password");
+
+            } else {
+
+                input.type = "password";
+
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+
+                button.setAttribute("aria-label", "Show password");
+            }
+        }
+    </script>
+}

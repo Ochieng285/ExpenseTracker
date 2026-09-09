@@ -1,0 +1,115 @@
+@model ExpenseTracker.Models.Expense
+
+@{
+    ViewData["Title"] = "Edit Expense";
+}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+                    <h3 class="mb-0">Edit Expense</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form asp-action="Edit" method="post">
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+
+                            <label asp-for="Description" class="form-label">
+                                Description
+                            </label>
+
+                            <input asp-for="Description" class="form-control" />
+
+                            <span asp-validation-for="Description" class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label asp-for="Amount" class="form-label">
+                                Amount (KSh)
+                            </label>
+
+                            <input asp-for="Amount" class="form-control" type="number" step="0.01" />
+
+                            <span asp-validation-for="Amount" class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label asp-for="Category" class="form-label">
+                                Category
+                            </label>
+
+                            <select asp-for="Category" class="form-select">
+
+                                <option value="Food">Food</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Bills">Bills</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Entertainment">
+                                    Entertainment
+                                </option>
+                                <option value="Other">Other</option>
+
+                            </select>
+
+                            <span asp-validation-for="Category" class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label asp-for="Date" class="form-label">
+                                Date
+                            </label>
+
+                            <input asp-for="Date" type="date" class="form-control"
+                                max="@DateTime.Today.ToString("yyyy-MM-dd")" />
+
+                            <span asp-validation-for="Date" class="text-danger">
+                            </span>
+
+                        </div>
+
+
+                        <div class="d-flex gap-2">
+
+                            <button type="submit" class="btn btn-primary">
+                                Save Changes
+                            </button>
+
+                            <a asp-action="Index" class="btn btn-secondary">
+                                Cancel
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

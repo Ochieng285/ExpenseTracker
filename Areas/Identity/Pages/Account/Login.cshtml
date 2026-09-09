@@ -1,0 +1,140 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+            <div class="auth-logo">
+                <span>ET</span>
+            </div>
+
+            <h1>Welcome Back</h1>
+
+            <p>Sign in to manage your expenses</p>
+        </div>
+
+        <form id="account" method="post">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger mb-3"
+                 role="alert"></div>
+
+            <div class="form-group">
+                <label asp-for="Input.Email">Email address</label>
+
+                <input asp-for="Input.Email"
+                       class="form-control auth-input"
+                       autocomplete="username"
+                       placeholder="Enter your email" />
+
+                <span asp-validation-for="Input.Email"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Password">Password</label>
+
+                <div class="password-wrapper">
+
+                    <input asp-for="Input.Password"
+                           class="form-control auth-input password-input"
+                           autocomplete="current-password"
+                           placeholder="Enter your password"
+                           id="loginPassword" />
+
+                    <button type="button"
+                            class="password-toggle"
+                            onclick="togglePassword('loginPassword', this)"
+                            aria-label="Show password">
+
+                        <i class="bi bi-eye"></i>
+
+                    </button>
+
+                </div>
+
+                <span asp-validation-for="Input.Password"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="auth-options">
+
+                <div class="form-check">
+                    <input asp-for="Input.RememberMe"
+                           class="form-check-input" />
+
+                    <label asp-for="Input.RememberMe"
+                           class="form-check-label">
+                        Remember me
+                    </label>
+                </div>
+
+                <a asp-page="./ForgotPassword">
+                    Forgot password?
+                </a>
+
+            </div>
+
+            <button id="login-submit"
+                    type="submit"
+                    class="btn auth-btn">
+                Sign In
+            </button>
+
+        </form>
+
+        <div class="auth-divider">
+            <span>OR</span>
+        </div>
+
+        <div class="auth-register">
+
+            <p>Don't have an account?</p>
+
+            <a asp-page="./Register"
+               class="register-link">
+                Create an account
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function togglePassword(inputId, button) {
+
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector("i");
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+
+                button.setAttribute("aria-label", "Hide password");
+
+            } else {
+
+                input.type = "password";
+
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+
+                button.setAttribute("aria-label", "Show password");
+            }
+        }
+    </script>
+}

@@ -1,0 +1,19 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# IDE and user-specific files
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Local secrets and environment-specific configuration
+appsettings.Local.json
+appsettings.*.Local.json
+
+# Logs
+*.log
+logs/

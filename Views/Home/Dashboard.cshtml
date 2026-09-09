@@ -1,0 +1,637 @@
+﻿@model ExpenseTracker.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid">
+
+    <!-- Dashboard Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h1 class="fw-bold mb-1">Dashboard</h1>
+
+            <p class="text-muted mb-0">
+                Overview of your spending and expenses
+            </p>
+        </div>
+
+        <a asp-controller="Expense" asp-action="Create" class="btn btn-primary px-4">
+
+            + Add Expense
+
+        </a>
+
+    </div>
+
+
+    <!-- Summary Cards -->
+    <div class="row g-4 mb-4">
+
+        <!-- Total Expenses -->
+        <div class="col-md-6 col-xl-3">
+
+            <div class="dashboard-card card-blue">
+
+                <div class="card-content">
+
+                    <div>
+                        <p class="card-label">
+                            Total Expenses
+                        </p>
+
+                        <h2>
+                            KSh @Model.TotalExpenses.ToString("N2")
+                        </h2>
+
+                        <small>
+                            All recorded expenses
+                        </small>
+                    </div>
+
+                    <div class="dashboard-icon">
+                        💰
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Monthly Expenses -->
+        <div class="col-md-6 col-xl-3">
+
+            <div class="dashboard-card card-green">
+
+                <div class="card-content">
+
+                    <div>
+                        <p class="card-label">
+                            This Month
+                        </p>
+
+                        <h2>
+                            KSh @Model.MonthlyExpenses.ToString("N2")
+                        </h2>
+
+                        <small>
+                            Current month spending
+                        </small>
+                    </div>
+
+                    <div class="dashboard-icon">
+                        📅
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Today -->
+        <div class="col-md-6 col-xl-3">
+
+            <div class="dashboard-card card-orange">
+
+                <div class="card-content">
+
+                    <div>
+                        <p class="card-label">
+                            Today
+                        </p>
+
+                        <h2>
+                            KSh @Model.TodayExpenses.ToString("N2")
+                        </h2>
+
+                        <small>
+                            Spending today
+                        </small>
+                    </div>
+
+                    <div class="dashboard-icon">
+                        🛒
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Expense Count -->
+        <div class="col-md-6 col-xl-3">
+
+            <div class="dashboard-card card-purple">
+
+                <div class="card-content">
+
+                    <div>
+                        <p class="card-label">
+                            Transactions
+                        </p>
+
+                        <h2>
+                            @Model.ExpenseCount
+                        </h2>
+
+                        <small>
+                            Total expense records
+                        </small>
+                    </div>
+
+                    <div class="dashboard-icon">
+                        📊
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Main Dashboard Content -->
+    <div class="row g-4">
+
+        <!-- Spending By Category -->
+        <div class="col-lg-6">
+
+            <div class="card dashboard-panel h-100">
+
+                <div class="card-header dashboard-panel-header">
+
+                    <div>
+                        <h5 class="mb-1">
+                            Spending by Category
+                        </h5>
+
+                        <small class="text-muted">
+                            Where your money is going
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="card-body">
+
+                    @if (!Model.CategorySummaries.Any())
+                    {
+                        <div class="text-center py-5">
+
+                            <div class="empty-icon">
+                                📊
+                            </div>
+
+                            <h6 class="mt-3">
+                                No spending data
+                            </h6>
+
+                            <p class="text-muted">
+                                Add expenses to see category statistics.
+                            </p>
+
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var category in Model.CategorySummaries)
+                        {
+                            <div class="category-row mb-4">
+
+                                <div class="d-flex justify-content-between mb-2">
+
+                                    <span class="fw-semibold">
+                                        @category.Category
+                                    </span>
+
+                                    <span class="fw-bold">
+                                        KSh @category.Total.ToString("N2")
+                                    </span>
+
+                                </div>
+
+                                @{
+                                    var percentage =
+                                    Model.TotalExpenses > 0
+                                    ? (category.Total / Model.TotalExpenses) * 100
+                                    : 0;
+                                }
+
+                                <div class="progress" style="height: 8px;">
+
+                                    <div class="progress-bar" role="progressbar" style="width: @percentage%;">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Recent Expenses -->
+        <div class="col-lg-6">
+
+            <div class="card dashboard-panel h-100">
+
+                <div class="card-header dashboard-panel-header">
+
+                    <div>
+                        <h5 class="mb-1">
+                            Recent Expenses
+                        </h5>
+
+                        <small class="text-muted">
+                            Your latest transactions
+                        </small>
+                    </div>
+
+                    <a asp-controller="Expense" asp-action="Index" class="btn btn-sm btn-outline-primary">
+
+                        View All
+
+                    </a>
+
+                </div>
+
+
+                <div class="card-body p-0">
+
+                    @if (!Model.RecentExpenses.Any())
+                    {
+                        <div class="text-center py-5">
+
+                            <div class="empty-icon">
+                                💸
+                            </div>
+
+                            <h6 class="mt-3">
+                                No expenses yet
+                            </h6>
+
+                            <p class="text-muted">
+                                Your recent expenses will appear here.
+                            </p>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+
+                            <table class="table table-hover mb-0">
+
+                                <thead>
+
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Category</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var expense in Model.RecentExpenses)
+                                    {
+                                        <tr>
+
+                                            <td class="fw-semibold">
+                                                @expense.Description
+                                            </td>
+
+                                            <td>
+                                                <span class="badge bg-light text-dark">
+                                                    @expense.Category
+                                                </span>
+                                            </td>
+
+                                            <td class="fw-semibold">
+                                                KSh @expense.Amount.ToString("N2")
+                                            </td>
+
+                                            <td class="text-muted">
+                                                @expense.Date.ToString("dd MMM")
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Spending Chart -->
+        <div class="row g-4 mt-1">
+
+            <div class="col-12">
+
+                <div class="card dashboard-panel">
+
+                    <div class="card-header dashboard-panel-header">
+
+                        <div>
+                            <h5 class="mb-1">
+                                Spending Overview
+                            </h5>
+
+                            <small class="text-muted">
+                                Visual breakdown of your spending by category
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div style="height: 350px;">
+                            <canvas id="spendingChart"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Monthly Spending Trend -->
+        <div class="row g-4 mt-1">
+
+            <div class="col-12">
+
+                <div class="card dashboard-panel">
+
+                    <div class="card-header dashboard-panel-header">
+
+                        <div>
+                            <h5 class="mb-1">
+                                Monthly Spending Trend
+                            </h5>
+
+                            <small class="text-muted">
+                                Track how your spending changes over time
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div style="height: 350px;">
+                            <canvas id="monthlySpendingChart"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+@section Scripts {
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        const categories = @Html.Raw(
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            System.Text.Json.JsonSerializer.Serialize(
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Model.CategorySummaries.Select(x => x.Category)
+                    )
+                    );
+
+    const totals = @Html.Raw(
+                                                                                                                                                                                                                                                                                                                                                                                                System.Text.Json.JsonSerializer.Serialize(
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.CategorySummaries.Select(x => x.Total)
+                )
+                );
+
+
+    const ctx = document
+        .getElementById('spendingChart')
+        .getContext('2d');
+
+
+        new Chart(ctx, {
+
+            type: 'bar',
+
+            data: {
+
+                labels: categories,
+
+                datasets: [
+                    {
+                        label: 'Spending (KSh)',
+
+                        data: totals,
+
+                        borderWidth: 1,
+
+                        borderRadius: 8
+                    }
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    },
+
+                    tooltip: {
+
+                        callbacks: {
+
+                            label: function (context) {
+
+                                return ' KSh ' +
+                                    Number(context.raw)
+                                        .toLocaleString(
+                                            'en-KE',
+                                            {
+                                                minimumFractionDigits: 2
+                                            }
+                                        );
+
+                            }
+
+                        }
+
+                    }
+
+                },
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        ticks: {
+
+                            callback: function (value) {
+
+                                return 'KSh ' +
+                                    Number(value)
+                                        .toLocaleString('en-KE');
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+        const monthlyLabels = @Html.Raw(
+                                System.Text.Json.JsonSerializer.Serialize(
+                                                                Model.MonthlySummaries.Select(x => x.Month)
+                )
+                );
+
+    const monthlyTotals = @Html.Raw(
+                                System.Text.Json.JsonSerializer.Serialize(
+                                                                Model.MonthlySummaries.Select(x => x.Total)
+                )
+                );
+
+
+    const monthlyCtx = document
+        .getElementById('monthlySpendingChart')
+        .getContext('2d');
+
+
+        new Chart(monthlyCtx, {
+
+            type: 'line',
+
+            data: {
+
+                labels: monthlyLabels,
+
+                datasets: [
+                    {
+                        label: 'Monthly Spending',
+
+                        data: monthlyTotals,
+
+                        borderWidth: 3,
+
+                        tension: 0.3,
+
+                        fill: true,
+
+                        pointRadius: 5,
+
+                        pointHoverRadius: 7
+                    }
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    },
+
+                    tooltip: {
+
+                        callbacks: {
+
+                            label: function (context) {
+
+                                return ' KSh ' +
+                                    Number(context.raw)
+                                        .toLocaleString(
+                                            'en-KE',
+                                            {
+                                                minimumFractionDigits: 2
+                                            }
+                                        );
+                            }
+
+                        }
+
+                    }
+
+                },
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        ticks: {
+
+                            callback: function (value) {
+
+                                return 'KSh ' +
+                                    Number(value)
+                                        .toLocaleString('en-KE');
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    </script>
+}

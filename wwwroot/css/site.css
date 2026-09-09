@@ -1,0 +1,334 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/* ================================
+   Dashboard
+   ================================ */
+
+.dashboard-card {
+    border-radius: 16px;
+    padding: 24px;
+    color: white;
+    min-height: 175px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-blue {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.card-green {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.card-orange {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.card-purple {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.card-label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.dashboard-card h2 {
+    font-size: 27px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.dashboard-card small {
+    opacity: 0.8;
+}
+
+.dashboard-icon {
+    font-size: 42px;
+    background: rgba(255, 255, 255, 0.15);
+    width: 65px;
+    height: 65px;
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Dashboard Panels */
+
+.dashboard-panel {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.dashboard-panel-header {
+    background: white;
+    border-bottom: 1px solid #eeeeee;
+
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-panel-header h5 {
+    font-weight: 700;
+}
+
+
+/* Category Progress */
+
+.category-row {
+    margin-bottom: 20px;
+}
+
+.category-row .progress {
+    background-color: #eeeeee;
+    border-radius: 20px;
+}
+
+.category-row .progress-bar {
+    border-radius: 20px;
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #7c3aed
+    );
+}
+
+
+/* Empty States */
+
+.empty-icon {
+    font-size: 40px;
+    opacity: 0.7;
+}
+/* ================================
+   Responsive Dashboard
+   ================================ */
+
+/* Tablets */
+@media (max-width: 991.98px) {
+
+    .dashboard-card {
+        min-height: 155px;
+        padding: 20px;
+    }
+
+    .dashboard-card h2 {
+        font-size: 24px;
+    }
+
+    .dashboard-icon {
+        width: 58px;
+        height: 58px;
+        font-size: 34px;
+    }
+
+    .dashboard-panel-header {
+        padding: 18px;
+    }
+}
+
+
+/* Phones */
+@media (max-width: 767.98px) {
+
+    /* Dashboard header */
+    .container-fluid {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 15px;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 .btn {
+        width: 100%;
+    }
+
+
+    /* Summary cards */
+    .dashboard-card {
+        min-height: 140px;
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .dashboard-card h2 {
+        font-size: 22px;
+    }
+
+    .dashboard-card small {
+        font-size: 12px;
+    }
+
+    .card-label {
+        font-size: 13px;
+    }
+
+    .dashboard-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 28px;
+        border-radius: 13px;
+    }
+
+
+    /* Dashboard panels */
+    .dashboard-panel {
+        border-radius: 14px;
+    }
+
+    .dashboard-panel-header {
+        padding: 16px;
+        gap: 10px;
+    }
+
+    .dashboard-panel-header h5 {
+        font-size: 17px;
+    }
+
+    .dashboard-panel-header small {
+        font-size: 12px;
+    }
+
+
+    /* Category section */
+    .category-row {
+        margin-bottom: 18px;
+    }
+
+
+    /* Recent expenses table */
+    .dashboard-panel table {
+        font-size: 13px;
+    }
+
+    .dashboard-panel table th,
+    .dashboard-panel table td {
+        padding: 12px 10px;
+    }
+}
+
+
+/* Very small phones */
+@media (max-width: 480px) {
+
+    .dashboard-card {
+        min-height: 125px;
+        padding: 16px;
+    }
+
+    .dashboard-card h2 {
+        font-size: 19px;
+    }
+
+    .dashboard-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 24px;
+    }
+
+    .dashboard-panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dashboard-panel-header .btn {
+        width: 100%;
+    }
+
+}
+/* ================================
+   Responsive Navigation
+   ================================ */
+
+.navbar-brand {
+    letter-spacing: 0.2px;
+}
+
+.navbar-nav .nav-link {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    transition: background-color 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+}
+
+
+@media (max-width: 991.98px) {
+
+    .navbar-nav {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 12px 10px !important;
+    }
+
+}
+/* ================================
+   Spending Chart
+   ================================ */
+
+#spendingChart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+@media (max-width: 767.98px) {
+
+    .dashboard-panel .card-body {
+        padding: 16px;
+    }
+
+    #spendingChart {
+        max-height: 300px;
+    }
+
+}

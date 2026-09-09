@@ -1,0 +1,290 @@
+@{
+    ViewData["Title"] = "Manage Your Money Better";
+}
+
+<div class="landing-page">
+
+    <!-- Landing Navigation -->
+    <header class="landing-navbar">
+
+        <div class="landing-container">
+
+            <a asp-controller="Home" asp-action="Index" class="landing-brand">
+
+                <span class="brand-logo">ET</span>
+
+                <span>Expense Tracker</span>
+
+            </a>
+
+            <nav class="landing-nav">
+
+                <a href="#features">Features</a>
+
+                <a href="#how-it-works">How It Works</a>
+
+                <a href="#about">About</a>
+
+                <a asp-area="Identity" asp-page="/Account/Login" class="landing-login">
+                    Login
+                </a>
+
+                <a asp-area="Identity" asp-page="/Account/Register" class="landing-get-started">
+                    Get Started
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- Hero Section -->
+
+    <section class="landing-hero">
+
+        <div class="landing-container hero-grid">
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    Take control of your money
+                </div>
+
+                <h1>
+                    Stop Overspending.
+                    <span>Start Building Your Future.</span>
+                </h1>
+
+                <p>
+                    Expense Tracker helps you understand where your money
+                    goes, track your daily spending and make smarter
+                    financial decisions.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a asp-area="Identity" asp-page="/Account/Register" class="hero-primary">
+                        Get Started
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                    <a href="#how-it-works" class="hero-secondary">
+                        Learn How It Works
+                        <i class="bi bi-play-circle"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-image-wrapper">
+
+                <div class="spending-note">
+                    <span>Too much<br />spending...</span>
+                    <i class="bi bi-arrow-down-left"></i>
+                </div>
+
+                <img src="~/images/expense.png" alt="Person worried about overspending" class="hero-image" />
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- How It Works -->
+
+    <section id="how-it-works" class="how-it-works">
+
+        <div class="landing-container">
+
+            <div class="section-heading">
+
+                <div class="section-badge">
+                    How It Works
+                </div>
+
+                <h2>
+                    Simple Steps. Better Money Habits.
+                </h2>
+
+                <p>
+                    Get started in minutes and take control of your
+                    financial life.
+                </p>
+
+            </div>
+
+
+            <div class="steps-grid">
+
+                <div class="step-card">
+
+                    <div class="step-icon step-blue">
+                        <i class="bi bi-person-plus"></i>
+                    </div>
+
+                    <span class="step-number">
+                        01
+                    </span>
+
+                    <h3>Create Your Account</h3>
+
+                    <p>
+                        Sign up in seconds and create your personal
+                        Expense Tracker account.
+                    </p>
+
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-icon step-green">
+                        <i class="bi bi-plus-lg"></i>
+                    </div>
+
+                    <span class="step-number">
+                        02
+                    </span>
+
+                    <h3>Add Your Expenses</h3>
+
+                    <p>
+                        Record your daily expenses and keep everything
+                        organized in one place.
+                    </p>
+
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-icon step-purple">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+
+                    <span class="step-number">
+                        03
+                    </span>
+
+                    <h3>Track & Analyze</h3>
+
+                    <p>
+                        See where your money goes using clear charts
+                        and spending summaries.
+                    </p>
+
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-icon step-orange">
+                        <i class="bi bi-bullseye"></i>
+                    </div>
+
+                    <span class="step-number">
+                        04
+                    </span>
+
+                    <h3>Reach Your Goals</h3>
+
+                    <p>
+                        Understand your spending habits and build
+                        healthier financial habits.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features -->
+
+    <section id="features" class="features-section">
+
+        <div class="landing-container">
+
+            <div class="section-heading">
+
+                <div class="section-badge">
+                    Why Expense Tracker?
+                </div>
+
+                <h2>
+                    Everything You Need to Understand Your Spending
+                </h2>
+
+            </div>
+
+
+            <div class="features-grid">
+
+                <div class="feature-item">
+                    <i class="bi bi-shield-check"></i>
+                    <h3>Private & Secure</h3>
+                    <p>
+                        Your expenses belong to your account and are
+                        separated from other users.
+                    </p>
+                </div>
+
+                <div class="feature-item">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <h3>Visual Insights</h3>
+                    <p>
+                        Understand your spending through useful
+                        summaries and charts.
+                    </p>
+                </div>
+
+                <div class="feature-item">
+                    <i class="bi bi-phone"></i>
+                    <h3>Easy to Use</h3>
+                    <p>
+                        Quickly record and review your expenses from
+                        any modern device.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Final CTA -->
+
+    <section id="about" class="final-cta">
+
+        <div class="landing-container">
+
+            <h2>
+                Your Money Deserves a Plan.
+            </h2>
+
+            <p>
+                Start tracking your expenses today and take the first
+                step toward better financial decisions.
+            </p>
+
+            <a asp-area="Identity" asp-page="/Account/Register" class="hero-primary">
+                Get Started
+                <i class="bi bi-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
